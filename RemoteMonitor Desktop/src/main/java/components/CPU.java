@@ -12,8 +12,8 @@ public class CPU extends Component {
     public CPU()
     {
         processor = si.getHardware().getProcessor();
-        cores = processor.getPhysicalPackageCount();
-        componentName = processor.getProcessorIdentifier().getModel();
+        cores = processor.getPhysicalProcessorCount();
+        componentName = processor.getProcessorIdentifier().getName();
         speed = processor.getMaxFreq();
         sensors = si.getHardware().getSensors();
     }
