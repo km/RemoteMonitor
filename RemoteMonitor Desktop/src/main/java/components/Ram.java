@@ -10,12 +10,14 @@ public class Ram extends Component{
     {
         gm = si.getHardware().getMemory();
         memoryTotal = gm.getTotal();
+
     }
 
     public void update()
     {
         memoryAvailable = gm.getAvailable();
         usage = (memoryAvailable/memoryTotal);
+        lastUpdated = System.currentTimeMillis();
     }
 
     public long getMemoryAvailable() {
