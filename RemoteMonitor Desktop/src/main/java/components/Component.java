@@ -4,10 +4,11 @@ import oshi.SystemInfo;
 
 public class Component {
     protected String componentName;
+    protected String componentType;
     protected long lastUpdated;
     protected double temperature;
     protected double usage;
-    protected SystemInfo si;
+    protected transient SystemInfo si;
 
     public Component()
     {

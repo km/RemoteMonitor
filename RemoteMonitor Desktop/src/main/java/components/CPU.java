@@ -7,13 +7,15 @@ public class CPU extends Component {
     private int cores;
     private long speed;
     private long[] currentSpeed;
-    private CentralProcessor processor;
-    private Sensors sensors;
+    private int[] fanSpeeds;
+    private transient CentralProcessor processor;
+    private transient Sensors sensors;
     public CPU()
     {
         processor = si.getHardware().getProcessor();
         cores = processor.getPhysicalProcessorCount();
         componentName = processor.getProcessorIdentifier().getName();
+        componentType = "CPU";
         speed = processor.getMaxFreq();
         sensors = si.getHardware().getSensors();
     }
@@ -21,6 +23,7 @@ public class CPU extends Component {
         usage = processor.getSystemCpuLoad(1000);
         temperature = sensors.getCpuTemperature();
         currentSpeed = processor.getCurrentFreq();
+        fanSpeeds = sensors.getFanSpeeds();
         lastUpdated = System.currentTimeMillis();
     }
     public long getSpeed()

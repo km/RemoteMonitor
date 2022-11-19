@@ -10,13 +10,14 @@ import java.util.List;
 
 public class GPU extends Component{
     private long vramTotal;
-    private GraphicsCard graphicsCard;
-    private Gpu jgpu;
+    private transient GraphicsCard graphicsCard;
+    private transient Gpu jgpu;
     public GPU(GraphicsCard gpu, Gpu gpu2)
     {
         graphicsCard = gpu;
         vramTotal = graphicsCard.getVRam();
         componentName = graphicsCard.getName();
+        componentType = "GPU";
         jgpu = gpu2;
 
     }

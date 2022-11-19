@@ -13,5 +13,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="github.oshi.core" level="project" />
     <orderEntry type="library" name="profesorfalken.jSensors" level="project" />
+    <orderEntry type="library" name="google.code.gson" level="project" />
   </component>
 </module>

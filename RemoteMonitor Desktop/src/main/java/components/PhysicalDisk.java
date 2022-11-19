@@ -1,28 +1,33 @@
 package components;
 
+import com.profesorfalken.jsensors.model.sensors.Load;
 import oshi.hardware.HWDiskStore;
 import oshi.hardware.HWPartition;
-
+import com.profesorfalken.jsensors.model.components.Disk;
 import java.io.File;
 import java.util.List;
 
-public class Disk extends Component {
+public class PhysicalDisk extends Component {
     private long capacity;
     private long availableCapacity;
-    private List<HWPartition> partitions;
-    private HWDiskStore diskStore;
-    public Disk(HWDiskStore hwDiskStore)
+    private transient List<HWPartition> partitions;
+    private transient HWDiskStore diskStore;
+    private transient Disk jdisk;
+    public PhysicalDisk(HWDiskStore hwDiskStore, Disk Jdisk)
     {
         diskStore = hwDiskStore;
         capacity = diskStore.getSize();
-        componentName = diskStore.getName();
+        componentName = diskStore.getModel();
+        componentType = "Disk";
         partitions = diskStore.getPartitions();
+        jdisk = Jdisk;
     }
 
     public void update()
     {
         partitions = diskStore.getPartitions();
         setAvailableCapacity();
+        temperature = checkTemp(jdisk.sensors.loads);
         lastUpdated = System.currentTimeMillis();
     }
     public long getAvailableCapacity() {
@@ -33,14 +38,25 @@ public class Disk extends Component {
         return capacity;
     }
 
-    public void setAvailableCapacity()
+    private void setAvailableCapacity()
     {
-        System.out.println();
         availableCapacity = 0;
         for(HWPartition p : partitions)
         {
             File diskPartition = new File(p.getMountPoint());
             availableCapacity += diskPartition.getFreeSpace();
         }
+    }
+
+    //checks if disk temperature can be accessed and returns its value
+    private double checkTemp(List<Load> loads)
+    {
+        for (Load l : loads)
+        {
+            if (l.name.contains("Temperature")){
+                return l.value;
+            }
+        }
+        return 0;
     }
 }
