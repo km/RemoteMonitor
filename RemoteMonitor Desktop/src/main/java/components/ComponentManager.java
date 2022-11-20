@@ -56,7 +56,6 @@ public class ComponentManager
     public String toJson()
     {
         Gson g = new Gson();
-
         return "[" + g.toJson(cpu) + ", " + g.toJson(gpus) + ", " + g.toJson(ram) + ", " + g.toJson(disks) + "]";
     }
 }
