@@ -22,6 +22,7 @@ public class Server {
     {
         listener = connectionSocket.accept();
         connectedIp = listener.getRemoteSocketAddress().toString();
+        System.out.println(connectedIp);
         writer = new PrintWriter(listener.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(listener.getInputStream()));
     }
