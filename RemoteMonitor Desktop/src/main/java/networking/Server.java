@@ -51,9 +51,12 @@ public class Server {
         return false;
     }
 
+    public String read() throws IOException {
+        return reader.readLine();
+    }
     public Boolean checkAuthed() throws IOException
     {
-        String input = reader.readLine();
+        String input = read();
         if (input != null){
             if (input.equals(keyword))
             {
