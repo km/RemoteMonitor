@@ -5,6 +5,7 @@ public class Server {
     private int listeningPort;
     private String keyword;
     private boolean isAuthenticated;
+    private boolean isConnected;
     private ServerSocket connectionSocket;
     private Socket listener;
     private PrintWriter writer;
@@ -15,6 +16,7 @@ public class Server {
         listeningPort = port;
         keyword = connectionKeyword;
         isAuthenticated = false;
+        isConnected = false;
         connectionSocket = new ServerSocket(listeningPort);
     }
 
@@ -27,12 +29,12 @@ public class Server {
         //Will keep looping the function till a client connects with a correct keyword
         if (!checkAuthed())
         {
-            System.out.println(connectedIp + " tried connecting with a wrong keyword");
             listener.close();
             return start();
         }
         else
         {
+            isConnected = true;
             return true;
         }
     }
@@ -40,38 +42,67 @@ public class Server {
     public Boolean write(String json) throws IOException {
         if (isAuthenticated)
         {
-            writer.println(json);
-            String response = reader.readLine();
-            if (response == "received")
+            try
             {
-                return true;
+                writer.println(json);
+                String response = reader.readLine();
+                if (response.equals("received"))
+                {
+                    return true;
+                }
+            }
+            catch(Exception e)
+            {
+                isConnected = false;
             }
 
         }
         return false;
     }
 
-    public String read() throws IOException {
-        return reader.readLine();
+    public String read() {
+        try {
+            return reader.readLine();
+        }
+        catch(Exception e){
+            isConnected = false;
+            return "disconnected";
+        }
     }
     public Boolean checkAuthed() throws IOException
     {
-        String input = read();
-        if (input != null){
-            if (input.equals(keyword))
+        try
+        {
+            String input = read();
+
+            if (input != null)
             {
-              isAuthenticated = true;
+                if (input.equals(keyword))
+                {
+                    isAuthenticated = true;
+                }
+                else
+                {
+                    System.out.println(connectedIp + " tried connecting with a wrong keyword " + "\"" + input + "\"");
+                }
             }
+        }
+        catch(Exception e)
+        {
+            isConnected = false;
         }
         return isAuthenticated;
     }
-
+    public void closeServer() throws IOException {
+        listener.close();
+        connectionSocket.close();
+    }
     public String getConnectedIp() {
         return connectedIp;
     }
 
     public Boolean isConnected()
     {
-        return listener.isConnected();
+        return isConnected;
     }
 }

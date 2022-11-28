@@ -73,6 +73,7 @@ public class ConfigurationManager
         try {
             Config configReturn = new Gson().fromJson(jsonString, new TypeToken<Config>() {
             }.getType());
+            System.out.println("Config file found reading...");
             return configReturn;
         }
         catch (Exception e)
