@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RemoteMonitor.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#007BA7" Padding="1">
+            <Label Text="Remote Monitor" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+      
+        <Label Text="Connect to Server" HorizontalTextAlignment="Center" Margin="0, 100, 10, 20" FontSize="30"/>
+        <Entry x:Name="ip" Placeholder="IP address" Keyboard="Default"/>
+        <Entry x:Name="port" Placeholder="Port" Keyboard="Numeric"/>
+        <Entry x:Name="keyword" Placeholder="Keyword" Keyboard="Default" />
+        <Button Clicked="Button_Clicked" Text="Connect" Margin="80, 20, 80, 0"/>
+        
+    </StackLayout>
+
+</ContentPage>

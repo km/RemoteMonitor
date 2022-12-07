@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "nkVfEWrGpMaMrg9suLhEE1q07RzGTML9KUoBww9JVkNz6Ze//ay22DCxpvti+CJCfHZ6uzikmhpuBLKOYXjc2w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\omara\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.iOS\\RemoteMonitor.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\omara\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\omara\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\omara\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}
