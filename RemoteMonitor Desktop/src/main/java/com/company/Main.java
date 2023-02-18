@@ -26,7 +26,7 @@ public class Main {
             while (server.isConnected()) {
                 String read = server.read();
 
-                if (read.equals("data request")) {
+                if (read != null && read.equals("data request")) {
                     System.out.println("Client requested data");
                     componentManager.updateAll();
 

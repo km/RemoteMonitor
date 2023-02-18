@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ConfigurationManager
 {
-    Config config;
+    private Config config;
     private File jsonDir;
     public ConfigurationManager() throws Exception
     {

@@ -29,22 +29,24 @@ public class Server {
         //Will keep looping the function till a client connects with a correct keyword
         if (!checkAuthed())
         {
+            write("failed");
             listener.close();
             return start();
         }
         else
         {
             isConnected = true;
+            write("connected");
             return true;
         }
     }
 
-    public Boolean write(String json) throws IOException {
+    public Boolean write(String data) throws IOException {
         if (isAuthenticated)
         {
             try
             {
-                writer.println(json);
+                writer.println(data);
                 String response = reader.readLine();
                 if (response.equals("received"))
                 {
@@ -74,7 +76,7 @@ public class Server {
         try
         {
             String input = read();
-
+            System.out.println("Checking");
             if (input != null)
             {
                 if (input.equals(keyword))
