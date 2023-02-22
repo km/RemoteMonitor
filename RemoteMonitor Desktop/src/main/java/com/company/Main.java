@@ -29,7 +29,6 @@ public class Main {
                 if (read != null && read.equals("data request")) {
                     System.out.println("Client requested data");
                     componentManager.updateAll();
-
                     if (server.write(componentManager.toJson())) {
                         System.out.println("Successfully sent data to the client");
                     } else {

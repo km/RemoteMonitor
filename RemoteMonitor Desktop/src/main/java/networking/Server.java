@@ -29,7 +29,7 @@ public class Server {
         //Will keep looping the function till a client connects with a correct keyword
         if (!checkAuthed())
         {
-            write("failed");
+            writeUnauth("failed");
             listener.close();
             return start();
         }
@@ -61,10 +61,27 @@ public class Server {
         }
         return false;
     }
+    private void writeUnauth(String data) throws IOException
+    {
 
+            try
+            {
+                writer.println(data);
+                String response = reader.readLine();
+            }
+            catch(Exception e)
+            {
+            }
+    }
     public String read() {
         try {
-            return reader.readLine();
+            String data = reader.readLine();
+            if (data == null)
+            {
+                isConnected = false;
+                return "disconnected";
+            }
+            return data;
         }
         catch(Exception e){
             isConnected = false;

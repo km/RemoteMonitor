@@ -17,10 +17,6 @@ namespace RemoteMonitor
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Client c = new Client("10.203.74.222", 48203, "2vyg8g8y");
-         
-            Console.WriteLine(c.Connect());
-            Console.WriteLine(c.requestData());
         }
     }
 }

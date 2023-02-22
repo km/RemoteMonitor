@@ -4,13 +4,13 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace RemoteMonitor
 {
     internal class Client
     {
         private Socket socket;
-        private IPAddress ip;
         private string connectionWord;
         private string ipAddress;
         private int connectionPort;
@@ -26,16 +26,16 @@ namespace RemoteMonitor
         {
             socket.Connect(ipAddress, connectionPort);
             write(connectionWord);
-            if (readAll().Equals("connected"))
+            string s = readAll();
+            if (s.Equals("connected"))
             {
+                write("received");
                 return true;
             }
-            else 
-            {
-                socket.Close();
-                return false;
-            }
-
+           
+            socket.Close();
+            return false;
+           
         }
         private void write(string data) 
         {
@@ -46,21 +46,22 @@ namespace RemoteMonitor
         {
             String output = "";
 
-            while (socket.Available > 0)
+            do
             {
                 byte[] received = new byte[1024];
                 socket.Receive(received);
                 output += Encoding.UTF8.GetString(received);
             }
-            return output;
+            while (socket.Available > 0);
+          
+            return output.Substring(0,output.IndexOf('\r'));
         }
         public String requestData()
         {
-            socket.Send(Encoding.ASCII.GetBytes("data request\n"));
-            Byte[] data = new Byte[2048];
-            socket.Receive(data);
-            socket.Send(Encoding.ASCII.GetBytes("received\n"));
-            return Encoding.ASCII.GetString(data);
+            write("data request");
+            String data = readAll();
+            write("received");
+            return data;
         }
     }
 }
