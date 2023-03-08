@@ -24,6 +24,7 @@ public class CPU extends Component {
         temperature = sensors.getCpuTemperature();
         currentSpeed = processor.getCurrentFreq();
         fanSpeeds = sensors.getFanSpeeds();
+        speed = processor.getMaxFreq();
         lastUpdated = System.currentTimeMillis();
     }
     public long getSpeed()

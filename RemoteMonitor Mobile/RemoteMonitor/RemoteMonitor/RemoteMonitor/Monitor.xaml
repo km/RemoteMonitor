@@ -1,12 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RemoteMonitor.Monitor">
-    <ContentPage.Content>
+             x:Class="RemoteMonitor.Monitor"
+             BackgroundColor="White">
+
+    <RefreshView x:Name="t" Refreshing="RefreshView_Refreshing">
+        <ScrollView>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                <Frame BackgroundColor="#007BA7" Padding="1">
+                    <Label Text="Remote Monitor"  HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                </Frame>
+                <Grid Margin="10" Grid.Row="2"  RowSpacing="10" ColumnSpacing="10">
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                    <StackLayout>
+                        <Image Source="cpu.png"/>
+                        <Label TextColor="Gray" Text="CPU" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Label TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Label TextColor="Gray" Text="FanSpeed: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Button Text="Details"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                    <StackLayout>
+                        <Image Source="gpu.png"/>
+                        <Label TextColor="Gray" x:Name="gpu" Text="GPU" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Label TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Label TextColor="Gray" Text="VRam: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Button Text="Details"/>
+
+                    </StackLayout>
+
+                </Frame>
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                    <StackLayout>
+                        <Image Source="ram.png"/>
+                        <Label TextColor="Gray" x:Name="ram" Text="Ram" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Label TextColor="Gray" Text="Available: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Button Text="Details"/>
+
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                    <StackLayout>
+                        <Image Source="disk.png"/>
+                        <Label TextColor="Gray" x:Name="disk" Text="Disk" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Label TextColor="Gray" Text="Available: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Label TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                        <Button Text="Details"/>
+
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            <Button Text="Disconnect" Margin="80, 20, 80, 0" BorderWidth="1.5" CornerRadius="10" TextColor="White" BorderColor="#112B47" BackgroundColor="#007BA7"/>
+
+            <Label TextColor="Gray" Text="Last Updated " HorizontalTextAlignment="Center"/>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
+
+    </RefreshView>
 </ContentPage>

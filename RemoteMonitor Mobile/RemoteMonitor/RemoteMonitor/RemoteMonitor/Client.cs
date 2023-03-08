@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace RemoteMonitor
 {
-    internal class Client
+    public class Client
     {
         private Socket socket;
         private string connectionWord;
@@ -24,6 +24,7 @@ namespace RemoteMonitor
 
         public Boolean Connect()
         {
+
             socket.Connect(ipAddress, connectionPort);
             write(connectionWord);
             string s = readAll();

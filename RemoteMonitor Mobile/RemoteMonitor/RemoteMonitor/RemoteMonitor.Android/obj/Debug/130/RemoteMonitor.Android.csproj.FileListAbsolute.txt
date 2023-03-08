@@ -631,3 +631,7 @@ C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMo
 C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMonitor\RemoteMonitor.Android\obj\Debug\130\stamp\_GenerateJavaStubs.stamp
 C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMonitor\RemoteMonitor.Android\obj\Debug\130\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMonitor\RemoteMonitor.Android\obj\Debug\130\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMonitor\RemoteMonitor.Android\obj\Debug\130\res\drawable\cpu.png
+C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMonitor\RemoteMonitor.Android\obj\Debug\130\res\drawable\gpu.png
+C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMonitor\RemoteMonitor.Android\obj\Debug\130\res\drawable\ram.png
+C:\Users\omara\Desktop\RemoteMonitor\RemoteMonitor Mobile\RemoteMonitor\RemoteMonitor\RemoteMonitor.Android\obj\Debug\130\res\drawable\disk.png

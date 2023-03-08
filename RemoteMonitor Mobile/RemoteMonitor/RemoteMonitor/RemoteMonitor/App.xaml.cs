@@ -10,7 +10,7 @@ namespace RemoteMonitor
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Monitor();
         }
 
         protected override void OnStart()

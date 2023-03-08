@@ -16,7 +16,8 @@ public class Main {
         while(true)
         {
             Server server = new Server(configurationManager.getPort(), configurationManager.getKeyword());
-
+            componentManager.updateAll();
+            System.out.println(componentManager.toJson());
             System.out.println("Connection Information");
             System.out.println("Local connection IP: " + configurationManager.getLocalIp() + " Port: " + configurationManager.getPort());
             System.out.println("Keyword: " + configurationManager.getKeyword());
