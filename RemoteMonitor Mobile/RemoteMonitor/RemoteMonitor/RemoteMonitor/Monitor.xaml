@@ -4,7 +4,7 @@
              x:Class="RemoteMonitor.Monitor"
              BackgroundColor="White">
 
-    <RefreshView x:Name="t" Refreshing="RefreshView_Refreshing">
+    <RefreshView x:Name="refreshControl" Refreshing="RefreshView_Refreshing">
         <ScrollView>
         <StackLayout>
                 <Frame BackgroundColor="#007BA7" Padding="1">
@@ -57,7 +57,7 @@
             </Grid>
             <Button Text="Disconnect" Margin="80, 20, 80, 0" BorderWidth="1.5" CornerRadius="10" TextColor="White" BorderColor="#112B47" BackgroundColor="#007BA7"/>
 
-            <Label TextColor="Gray" Text="Last Updated " HorizontalTextAlignment="Center"/>
+            <Label x:Name="lastUpdated" TextColor="Gray" Text="Last Updated " HorizontalTextAlignment="Center"/>
         </StackLayout>
     </ScrollView>
 

@@ -17,14 +17,15 @@ namespace RemoteMonitor
         {
             InitializeComponent();
             _client = client;
-            Update();
         }
-        private void Update() 
+        public Monitor() { InitializeComponent(); Update();
+        }
+        private void Update()
         {
-            t.IsRefreshing= false;
+            refreshControl.IsRefreshing = false;
+            _client.requestData();
+            lastUpdated.Text = "Last Updated " + DateTime.Now.ToLocalTime().ToString();
         }
-        public Monitor() { InitializeComponent(); }
-
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
             Update();
