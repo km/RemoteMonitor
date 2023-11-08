@@ -17,7 +17,6 @@ public class Main {
         {
             Server server = new Server(configurationManager.getLocalIp(), configurationManager.getPort(), configurationManager.getKeyword());
             componentManager.updateAll();
-            System.out.println(componentManager.toJson());
             System.out.println("Connection Information");
             System.out.println("Local connection IP: " + configurationManager.getLocalIp() + " Port: " + configurationManager.getPort());
             System.out.println("Keyword: " + configurationManager.getKeyword());
