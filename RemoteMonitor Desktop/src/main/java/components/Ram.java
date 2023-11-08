@@ -16,7 +16,6 @@ public class Ram extends Component{
     public void update()
     {
         memoryAvailable = gm.getAvailable();
-        usage = (memoryAvailable/memoryTotal);
         lastUpdated = System.currentTimeMillis();
     }
 

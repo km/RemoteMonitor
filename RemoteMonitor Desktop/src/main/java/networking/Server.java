@@ -11,13 +11,13 @@ public class Server {
     private PrintWriter writer;
     private BufferedReader reader;
     private String connectedIp;
-    public Server(int port, String connectionKeyword) throws IOException
+    public Server(String ip, int port, String connectionKeyword) throws IOException
     {
         listeningPort = port;
         keyword = connectionKeyword;
         isAuthenticated = false;
         isConnected = false;
-        connectionSocket = new ServerSocket(listeningPort);
+        connectionSocket = new ServerSocket(listeningPort, 0, InetAddress.getByName(ip));
     }
 
     public boolean start() throws IOException
@@ -29,22 +29,24 @@ public class Server {
         //Will keep looping the function till a client connects with a correct keyword
         if (!checkAuthed())
         {
+            writeUnauth("failed");
             listener.close();
             return start();
         }
         else
         {
             isConnected = true;
+            write("connected");
             return true;
         }
     }
 
-    public Boolean write(String json) throws IOException {
+    public Boolean write(String data) throws IOException {
         if (isAuthenticated)
         {
             try
             {
-                writer.println(json);
+                writer.println(data);
                 String response = reader.readLine();
                 if (response.equals("received"))
                 {
@@ -59,10 +61,27 @@ public class Server {
         }
         return false;
     }
+    private void writeUnauth(String data) throws IOException
+    {
 
+            try
+            {
+                writer.println(data);
+                String response = reader.readLine();
+            }
+            catch(Exception e)
+            {
+            }
+    }
     public String read() {
         try {
-            return reader.readLine();
+            String data = reader.readLine();
+            if (data == null)
+            {
+                isConnected = false;
+                return "disconnected";
+            }
+            return data;
         }
         catch(Exception e){
             isConnected = false;
@@ -74,7 +93,7 @@ public class Server {
         try
         {
             String input = read();
-
+            System.out.println("Checking");
             if (input != null)
             {
                 if (input.equals(keyword))

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "yR0z2O/wS4Z9JCOQqFaEk9SxwKuimeCiXiibU06oiKyA2auyTgMfY8f6kqwh8dWpiITF7ftfY/EFOidoZmMsLA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\omar\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\omar\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\omar\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\omar\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\omar\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\omar\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\omar\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}

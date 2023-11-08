@@ -15,8 +15,8 @@ public class Main {
         ComponentManager componentManager = new ComponentManager();
         while(true)
         {
-            Server server = new Server(configurationManager.getPort(), configurationManager.getKeyword());
-
+            Server server = new Server(configurationManager.getLocalIp(), configurationManager.getPort(), configurationManager.getKeyword());
+            componentManager.updateAll();
             System.out.println("Connection Information");
             System.out.println("Local connection IP: " + configurationManager.getLocalIp() + " Port: " + configurationManager.getPort());
             System.out.println("Keyword: " + configurationManager.getKeyword());
@@ -26,10 +26,9 @@ public class Main {
             while (server.isConnected()) {
                 String read = server.read();
 
-                if (read.equals("data request")) {
+                if (read != null && read.equals("data request")) {
                     System.out.println("Client requested data");
                     componentManager.updateAll();
-
                     if (server.write(componentManager.toJson())) {
                         System.out.println("Successfully sent data to the client");
                     } else {

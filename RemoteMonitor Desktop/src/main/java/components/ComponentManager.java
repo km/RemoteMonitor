@@ -34,7 +34,7 @@ public class ComponentManager
         {
             gpus.add(new GPU(graphicsCards.get(i), gpuJ.get(i)));
         }
-        for (int i = 0; i < diskJ.size(); i++)
+        for (int i = 0; i < hwDiskStoreList.size(); i++)
         {
             disks.add(new PhysicalDisk(hwDiskStoreList.get(i), diskJ.get(i)));
         }
