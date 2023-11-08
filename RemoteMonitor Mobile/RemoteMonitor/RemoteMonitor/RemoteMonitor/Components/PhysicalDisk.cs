@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace RemoteMonitor.Components
 {
-    internal class PhysicalDisk : Component 
+    public class PhysicalDisk : Component 
     {
-        private long capacity;
-        private long availableCapacity;
+        public long capacity;
+        public long availableCapacity;
 
         public PhysicalDisk(string name, double temp, long diskCapacity, long availableDiskCapacity)
         {
             componentName = name;
             componentType = "Disk";
+            temperature = temp;
+            capacity = diskCapacity;
+            availableCapacity = availableDiskCapacity;
             update(temp, diskCapacity, availableDiskCapacity);
         }
         public void update(double temp, long diskCapacity, long availableDiskCapacity)
@@ -20,7 +24,25 @@ namespace RemoteMonitor.Components
             temperature = temp;
             capacity= diskCapacity;
             availableCapacity= availableDiskCapacity;
-            usage = availableCapacity / capacity;
+            if(capacity != 0)
+                usage = availableCapacity / capacity;
+        }
+        public PhysicalDisk(JObject json)
+        {
+            componentName = json["componentName"].ToString();
+            componentType = "Disk";
+            temperature = json["temperature"].ToObject<double>();
+            capacity = json["capacity"].ToObject<long>();
+            availableCapacity = json["availableCapacity"].ToObject<long>();
+            usage = json["usage"].ToObject<double>();
+            update(json);
+        }
+        public void update(JObject json)
+        {
+            temperature = json["temperature"].ToObject<double>();
+            capacity = json["capacity"].ToObject<long>();
+            availableCapacity = json["availableCapacity"].ToObject<long>();
+            usage = json["usage"].ToObject<double>();
         }
         public long getAvailableCapacity()
         {

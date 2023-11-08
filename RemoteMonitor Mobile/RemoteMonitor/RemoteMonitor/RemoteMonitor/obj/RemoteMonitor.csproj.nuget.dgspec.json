@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\omara\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj": {}
+    "C:\\Users\\omar\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\omara\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj": {
+    "C:\\Users\\omar\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omara\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj",
+        "projectUniqueName": "C:\\Users\\omar\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj",
         "projectName": "RemoteMonitor",
-        "projectPath": "C:\\Users\\omara\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj",
-        "packagesPath": "C:\\Users\\omara\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omara\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\obj\\",
+        "projectPath": "C:\\Users\\omar\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor.csproj",
+        "packagesPath": "C:\\Users\\omar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\omar\\Desktop\\RemoteMonitor\\RemoteMonitor Mobile\\RemoteMonitor\\RemoteMonitor\\RemoteMonitor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\omara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\omar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -51,6 +51,10 @@
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.7.0, )"
@@ -71,7 +75,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

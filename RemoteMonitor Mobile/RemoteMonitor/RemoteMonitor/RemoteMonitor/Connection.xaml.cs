@@ -28,7 +28,7 @@ namespace RemoteMonitor
                 {
                     error.TextColor = Color.Green;
                     error.Text = "Successfully connected!";
-                    App.Current.MainPage = new Monitor(client);
+                    //App.Current.MainPage = new Monitor();
                 }
                 else
                 {
