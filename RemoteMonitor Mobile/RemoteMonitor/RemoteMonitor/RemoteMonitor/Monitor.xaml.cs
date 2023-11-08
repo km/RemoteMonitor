@@ -30,8 +30,9 @@ namespace RemoteMonitor
         }
         public Monitor(JArray jsonArray, Client c) 
         { 
-            _client = c;
             InitializeComponent();
+            _client = c;
+
             _cpu = new CPU(jsonArray[0].ToObject<JObject>());
             _gpu = new GPU(jsonArray[1][0].ToObject<JObject>());
             _ram = new Ram(jsonArray[2].ToObject<JObject>());
@@ -119,19 +120,23 @@ namespace RemoteMonitor
             // Round to two decimal places
             return Math.Round(gigabytes * 100.0) / 100.0;
         }
-        private void RefreshView_Refreshing(object sender, EventArgs e)
+        private async void RefreshView_Refreshing(object sender, EventArgs e)
         {
             try
             {
-               string data = _client.requestData();
+               string data = await _client.RequestDataAsync();
                Update(JArray.Parse(data));
                setFields();
 
             }
             catch (Exception)
             {
-                _client.disconnect();
-                Navigation.PushAsync(new MainPage("Disconnected from server"));
+                _client.Disconnect();
+                var newPage = new MainPage("Disconnected from server");
+                var animation = new Animation(v => newPage.Opacity = v, 0, 1);
+
+                animation.Commit(newPage, "FadeAnimation", length: 500, easing: Easing.Linear);
+                await Navigation.PushAsync(newPage);
                 Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
 
             }
@@ -141,8 +146,12 @@ namespace RemoteMonitor
         //disconnect from server button
         private void Button_Clicked(object sender, EventArgs e)
         {
-            _client.disconnect();
-            Navigation.PushAsync(new MainPage("Disconnected from server"));
+            _client.Disconnect();
+            var newPage = new MainPage("Disconnected from server");
+            var animation = new Animation(v => newPage.Opacity = v, 0, 1);
+
+            animation.Commit(newPage, "FadeAnimation", length: 500, easing: Easing.Linear);
+            Navigation.PushAsync(newPage);
             Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
 
         }

@@ -17,20 +17,28 @@ namespace RemoteMonitor
         public MainPage(string text)
         {
             InitializeComponent();
-            setFields();
+            try
+            {
+                setFields();
+
+            }
+            catch (Exception)
+            {
+            }
             error.Text = text;
 
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             error.Text = "";
             try
             {
+                connect.IsEnabled = false;
                 Client client = new Client(ip.Text, Convert.ToInt32(port.Text), keyword.Text);
-                bool connected = client.Connect();
+                bool connected = await client.ConnectAsync();
                 
-
+                Debug.WriteLine(connected);
                 if (connected)
                 {
                     Preferences.Set("ip", ip.Text);
@@ -38,18 +46,28 @@ namespace RemoteMonitor
                     Preferences.Set("keyword", keyword.Text);
                     error.TextColor = Color.Green;
                     error.Text = "Successfully connected!";
-                    Navigation.PushAsync((new Monitor(JArray.Parse(client.requestData()), client)));
+                    var newPage = new Monitor(JArray.Parse(await client.RequestDataAsync()), client);
+                    var animation = new Animation(v => newPage.Opacity = v, 0, 1);
+
+                    animation.Commit(newPage, "FadeAnimation", length: 500, easing: Easing.Linear);
+                    await Navigation.PushAsync(newPage);
                     Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
 
                 }
                 else
                 {
+                    connect.IsEnabled = true;
+
                     error.Text = "Failed to connect to server";
+
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                connect.IsEnabled = true;
+
                 error.Text = "Failed to connect to server";
+                Debug.WriteLine(ex);
             }
            
         }

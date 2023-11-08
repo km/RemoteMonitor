@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace RemoteMonitor
 {
@@ -17,69 +18,63 @@ namespace RemoteMonitor
         public Client(String address, int port, string keyword)
         {
             socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
-            socket.SendTimeout = 5000;
-            socket.ReceiveTimeout = 5000;
-
             connectionWord = keyword;
             connectionPort = port;
             ipAddress = address;
         }
 
-        public Boolean Connect()
+        public async Task<bool> ConnectAsync()
         {
-
-            socket.Connect(ipAddress, connectionPort);
-            write(connectionWord);
-            string s = readAll();
+         
+            await socket.ConnectAsync(ipAddress, connectionPort);
+            await WriteAsync(connectionWord);
+            string s = await ReadAllAsync();
             if (s.Equals("connected"))
             {
-                write("received");
+                await WriteAsync("received");
                 return true;
             }
-           
+
             socket.Close();
             return false;
-           
         }
-        private void write(string data) 
+
+        private async Task WriteAsync(string data)
         {
             byte[] bytesWord = Encoding.ASCII.GetBytes(data + "\n");
-            socket.Send(bytesWord);
+            await socket.SendAsync(new ArraySegment<byte>(bytesWord), SocketFlags.None);
         }
-        private String readAll() 
+
+        private async Task<string> ReadAllAsync()
         {
             String output = "";
-            try
-            {
-                do
-                {
-                    byte[] received = new byte[1024];
-                    socket.Receive(received);
-                    output += Encoding.UTF8.GetString(received);
-                }
-                while (socket.Available > 0);
+            byte[] received = new byte[1024];
+            int bytesRead;
 
-            }
-            catch (Exception)
+            while (true)
             {
-
+                bytesRead = await socket.ReceiveAsync(new ArraySegment<byte>(received), SocketFlags.None);
+                if (bytesRead == 0)
+                    break; 
+                output += Encoding.UTF8.GetString(received, 0, bytesRead);
+                if (!(socket.Available > 0))
+                    break;
             }
-            
-        
-          
-            return output.Substring(0,output.IndexOf('\r'));
+
+            return output.Substring(0, output.IndexOf('\r'));
         }
-        public String requestData()
+
+        public async Task<string> RequestDataAsync()
         {
-            write("data request");
-            String data = readAll();
-            write("received");
+            await WriteAsync("data request");
+            String data = await ReadAllAsync();
+            await WriteAsync("received");
             return data;
         }
 
-        //disconnect
-        public void disconnect()
-        { 
+        // Disconnect
+        public void Disconnect()
+        {
             socket.Close();
             socket.Dispose();
         }

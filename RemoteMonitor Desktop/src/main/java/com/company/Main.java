@@ -15,7 +15,7 @@ public class Main {
         ComponentManager componentManager = new ComponentManager();
         while(true)
         {
-            Server server = new Server(configurationManager.getPort(), configurationManager.getKeyword());
+            Server server = new Server(configurationManager.getLocalIp(), configurationManager.getPort(), configurationManager.getKeyword());
             componentManager.updateAll();
             System.out.println(componentManager.toJson());
             System.out.println("Connection Information");

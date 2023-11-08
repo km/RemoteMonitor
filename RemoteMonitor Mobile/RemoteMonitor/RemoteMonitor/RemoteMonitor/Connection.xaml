@@ -13,7 +13,7 @@
         <Entry x:Name="ip" Placeholder="IP address" Keyboard="Default" TextColor="White" Margin="10, -20, 10, 0"/>
         <Entry x:Name="port" Placeholder="Port" Keyboard="Numeric" TextColor="White" Margin="10, 0, 10, 0"/>
         <Entry x:Name="keyword" Placeholder="Keyword" Keyboard="Default" TextColor="White" Margin="10, 0, 10, 0"/>
-        <Button Clicked="Button_Clicked" Text="Connect" Margin="80, 20, 80, 0" BorderWidth="1.5" CornerRadius="50" TextColor="White" BorderColor="Aquamarine" BackgroundColor="#112B47"/>
+        <Button x:Name="connect" Clicked="Button_Clicked" Text="Connect" Margin="80, 20, 80, 0" BorderWidth="1.5" CornerRadius="50" TextColor="White" BorderColor="Aquamarine" BackgroundColor="#112B47"/>
         <Label x:Name="error" Text="" HorizontalTextAlignment="Center" TextColor="Red"/>
     </StackLayout>
 

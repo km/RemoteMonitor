@@ -11,13 +11,13 @@ public class Server {
     private PrintWriter writer;
     private BufferedReader reader;
     private String connectedIp;
-    public Server(int port, String connectionKeyword) throws IOException
+    public Server(String ip, int port, String connectionKeyword) throws IOException
     {
         listeningPort = port;
         keyword = connectionKeyword;
         isAuthenticated = false;
         isConnected = false;
-        connectionSocket = new ServerSocket(listeningPort);
+        connectionSocket = new ServerSocket(listeningPort, 0, InetAddress.getByName(ip));
     }
 
     public boolean start() throws IOException
