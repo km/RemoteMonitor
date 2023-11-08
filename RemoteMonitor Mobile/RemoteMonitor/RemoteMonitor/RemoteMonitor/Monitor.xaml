@@ -6,60 +6,66 @@
 
     <RefreshView x:Name="refreshControl" Refreshing="RefreshView_Refreshing">
         <ScrollView>
-        <StackLayout>
+            <StackLayout>
                 <Frame BackgroundColor="#007BA7" Padding="1">
-                    <Label Text="Remote Monitor"  HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                    <Label x:Name="titleLabel" Text="Remote Monitor" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </Frame>
-                <Grid Margin="10" Grid.Row="2"  RowSpacing="10" ColumnSpacing="10">
-                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
-                    <StackLayout>
-                        <Image Source="cpu.png"/>
-                        <Label TextColor="Gray" Text="CPU" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
-                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Label TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Label TextColor="Gray" Text="FanSpeed: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Button Text="Details"/>
-                    </StackLayout>
-                </Frame>
-                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
-                    <StackLayout>
-                        <Image Source="gpu.png"/>
-                        <Label TextColor="Gray" x:Name="gpu" Text="GPU" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
-                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Label TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Label TextColor="Gray" Text="VRam: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Button Text="Details"/>
 
-                    </StackLayout>
+                <Grid Margin="10" Grid.Row="2" RowSpacing="10" ColumnSpacing="10">
+                    <!-- CPU -->
+                    <Frame x:Name="cpuFrame" Grid.Row="0" Grid.Column="0" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                        <StackLayout>
+                            <Image Source="cpu.png"/>
+                            <Label x:Name="cpuName" TextColor="Gray" Text="CPU" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="cpuUsage" TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="cpuTemp" TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="cpuFanSpeed" TextColor="Gray" Text="FanSpeed: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Button Text="Details"/>
+                        </StackLayout>
+                    </Frame>
 
-                </Frame>
-                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
-                    <StackLayout>
-                        <Image Source="ram.png"/>
-                        <Label TextColor="Gray" x:Name="ram" Text="Ram" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
-                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Label TextColor="Gray" Text="Available: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Button Text="Details"/>
+                    <!-- GPU -->
+                    <Frame x:Name="gpuFrame" Grid.Row="0" Grid.Column="1" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                        <StackLayout>
+                            <Image Source="gpu.png"/>
+                            <Label x:Name="gpuName" TextColor="Gray" Text="GPU" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="gpuUsage" TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="gpuTemp" TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="gpuVRam" TextColor="Gray" Text="VRam: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Button Text="Details"/>
+                        </StackLayout>
+                    </Frame>
 
-                    </StackLayout>
-                </Frame>
-                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
-                    <StackLayout>
-                        <Image Source="disk.png"/>
-                        <Label TextColor="Gray" x:Name="disk" Text="Disk" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
-                        <Label TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Label TextColor="Gray" Text="Available: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Label TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
-                        <Button Text="Details"/>
+                    <!-- RAM -->
+                    <Frame x:Name="ramFrame" Grid.Row="1" Grid.Column="0" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                        <StackLayout>
+                            <Image Source="ram.png"/>
+                            <Label x:Name="ramName" TextColor="Gray" Text="Ram" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="ramUsage" TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="ramAvailable" TextColor="Gray" Text="Available: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="ramTotal" TextColor="Gray" Text="Total: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Button Text="Details"/>
+                        </StackLayout>
+                    </Frame>
 
-                    </StackLayout>
-                </Frame>
-            </Grid>
-            <Button Text="Disconnect" Margin="80, 20, 80, 0" BorderWidth="1.5" CornerRadius="10" TextColor="White" BorderColor="#112B47" BackgroundColor="#007BA7"/>
+                    <!-- Disk -->
+                    <Frame x:Name="diskFrame" Grid.Row="1" Grid.Column="1" BackgroundColor="White" BorderColor="#112B47" HasShadow="True" CornerRadius="5">
+                        <StackLayout>
+                            <Image Source="disk.png"/>
+                            <Label x:Name="diskName" TextColor="Gray" Text="Disk" FontAttributes="Bold" FontSize="23" HorizontalTextAlignment="Center"/>
+                            <Label x:Name="diskUsage" TextColor="Gray" Text="Usage: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="diskAvailable" TextColor="Gray" Text="Available: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="diskTotal" TextColor="Gray" Text="Total: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Label x:Name="diskTemp" TextColor="Gray" Text="Temp: N/A" FontSize="18" HorizontalTextAlignment="Left"/>
+                            <Button Text="Details"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
 
-            <Label x:Name="lastUpdated" TextColor="Gray" Text="Last Updated " HorizontalTextAlignment="Center"/>
-        </StackLayout>
-    </ScrollView>
+                <Button Clicked="Button_Clicked" x:Name="disconnectButton" Text="Disconnect" Margin="80, 20, 80, 0" BorderWidth="1.5" CornerRadius="10" TextColor="White" BorderColor="#112B47" BackgroundColor="#007BA7"/>
 
+                <Label x:Name="lastUpdated" TextColor="Gray" Text="Last Updated " HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </ScrollView>
     </RefreshView>
 </ContentPage>

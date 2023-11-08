@@ -17,6 +17,9 @@ namespace RemoteMonitor
         public Client(String address, int port, string keyword)
         {
             socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+            socket.SendTimeout = 5000;
+            socket.ReceiveTimeout = 5000;
+
             connectionWord = keyword;
             connectionPort = port;
             ipAddress = address;
@@ -46,14 +49,23 @@ namespace RemoteMonitor
         private String readAll() 
         {
             String output = "";
-
-            do
+            try
             {
-                byte[] received = new byte[1024];
-                socket.Receive(received);
-                output += Encoding.UTF8.GetString(received);
+                do
+                {
+                    byte[] received = new byte[1024];
+                    socket.Receive(received);
+                    output += Encoding.UTF8.GetString(received);
+                }
+                while (socket.Available > 0);
+
             }
-            while (socket.Available > 0);
+            catch (Exception)
+            {
+
+            }
+            
+        
           
             return output.Substring(0,output.IndexOf('\r'));
         }
@@ -63,6 +75,13 @@ namespace RemoteMonitor
             String data = readAll();
             write("received");
             return data;
+        }
+
+        //disconnect
+        public void disconnect()
+        { 
+            socket.Close();
+            socket.Dispose();
         }
     }
 }

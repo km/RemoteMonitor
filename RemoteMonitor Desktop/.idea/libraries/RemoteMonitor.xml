@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="RemoteMonitor">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/RemoteMonitor_jar/RemoteMonitor.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

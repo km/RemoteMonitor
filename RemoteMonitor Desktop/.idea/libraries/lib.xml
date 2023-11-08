@@ -1,7 +1,8 @@
 <component name="libraryTable">
-  <library name="slf4j.nop" type="repository">
-    <properties maven-id="org.slf4j:slf4j-nop:2.0.5" />
+  <library name="lib">
     <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/sl4j-1.0.9.5-jre14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j-core-1.0.9.5-jre14.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/slf4j-nop-2.0.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/slf4j-api-2.0.5.jar!/" />
     </CLASSES>

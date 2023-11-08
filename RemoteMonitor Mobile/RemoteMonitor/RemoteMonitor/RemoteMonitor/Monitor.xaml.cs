@@ -21,19 +21,27 @@ namespace RemoteMonitor
         private Ram _ram;
         public Monitor(Client client, GPU gpu, PhysicalDisk disk, Ram ram)
         {
+            
             InitializeComponent();
             _client = client;
             _gpu = gpu;
             _disk = disk;
             _ram = ram;
         }
-        public Monitor(JArray jsonArray) 
+        public Monitor(JArray jsonArray, Client c) 
         { 
+            _client = c;
             InitializeComponent();
             _cpu = new CPU(jsonArray[0].ToObject<JObject>());
             _gpu = new GPU(jsonArray[1][0].ToObject<JObject>());
             _ram = new Ram(jsonArray[2].ToObject<JObject>());
             _disk = new PhysicalDisk(jsonArray[3][0].ToObject<JObject>());
+
+            setFields();
+        }
+        public Monitor()
+        {
+            InitializeComponent();
         }
         private void Update(JArray jsonArray)
         {
@@ -47,20 +55,97 @@ namespace RemoteMonitor
             lastUpdated.Text = "Last Updated " + DateTime.Now.ToLocalTime().ToString();
         }
 
+        //sets the fields to the values of the components
+        private void setFields()
+        {
+            //cpu
+            if (_cpu.componentName != "")
+               cpuName.Text = _cpu.componentName;
+            else
+                cpuName.Text = "CPU";
+
+            if (_cpu.temperature != 0)
+                cpuTemp.Text = "Temp: " + _cpu.temperature.ToString() + "°C";
+            else
+                cpuTemp.Text = "Temp: N/A";
+            cpuUsage.Text = "Usage: "+ Math.Round(_cpu.usage * 100,2) + "%";
+            if (_cpu.fanSpeed[0] != 0)
+                cpuFanSpeed.Text = "Fan: " + _cpu.fanSpeed[0].ToString() + "RPM";
+
+            else
+                cpuFanSpeed.Text = "Fan: N/A";
+
+            //gpu
+            if (_gpu.componentName != "")
+                gpuName.Text = _gpu.componentName;
+            else
+                gpuName.Text = "GPU";
+
+            if (_gpu.temperature != 0)
+                gpuTemp.Text = "Temp: " + _gpu.temperature.ToString() + "°C";
+            else
+                gpuTemp.Text = "Temp: N/A";
+            gpuUsage.Text = "Usage: " + _gpu.usage.ToString() + "%";
+            gpuVRam.Text = "VramTotal: " + bytesToGigabytes(_gpu.vramTotal) + "GB";
+
+            //ram
+            if (_ram.componentName != "" || _ram.componentName == null)
+                ramName.Text = _ram.componentName;
+            else
+                ramName.Text = "RAM";
+            ramUsage.Text = "Usage: " + Math.Round(_ram.getUsage() * 100,2) + "%";
+            ramAvailable.Text = "Available: " + bytesToGigabytes(_ram.getMemoryAvailable()) + "GB";
+            ramTotal.Text = "Total: " + bytesToGigabytes(_ram.getMemoryTotal()) + "GB";
+
+            //disk
+            if (_disk.componentName != "")
+                diskName.Text = _disk.componentName;
+            else
+                diskName.Text = "Disk";
+            if (_disk.temperature != 0)
+                diskTemp.Text = "Temp: " + _disk.temperature.ToString() + "°C";
+            else
+                diskTemp.Text = "Temp: N/A";
+            diskUsage.Text = "Usage: "+_disk.usage.ToString() + "%";
+            //convert to GB
+            diskAvailable.Text = "Available: "+ bytesToGigabytes(_disk.availableCapacity) + "GB";
+            diskTotal.Text = "Total: " + bytesToGigabytes(_disk.capacity) + "GB";
+           
+        }
+        private double bytesToGigabytes(long bytes)
+        {
+            // Convert to gigabytes without rounding
+            double gigabytes = bytes / (1024.0 * 1024.0 * 1024.0);
+            // Round to two decimal places
+            return Math.Round(gigabytes * 100.0) / 100.0;
+        }
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
             try
             {
                string data = _client.requestData();
                Update(JArray.Parse(data));
+               setFields();
+
             }
             catch (Exception)
             {
+                _client.disconnect();
+                Navigation.PushAsync(new MainPage("Disconnected from server"));
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
 
-                
             }
-            
+
         }
-      
+
+        //disconnect from server button
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            _client.disconnect();
+            Navigation.PushAsync(new MainPage("Disconnected from server"));
+            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+
+        }
+
     }
 }
