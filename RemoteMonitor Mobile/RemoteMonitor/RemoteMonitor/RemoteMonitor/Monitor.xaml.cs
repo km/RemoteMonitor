@@ -30,12 +30,22 @@ namespace RemoteMonitor
             _ram = ram;
         }
         public Monitor(JArray jsonArray, Client c) 
-        { 
+        {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
             _client = c;
 
             _cpu = new CPU(jsonArray[0].ToObject<JObject>());
-            _gpu = new GPU(jsonArray[1][0].ToObject<JObject>());
+            try
+            {
+                _gpu = new GPU(jsonArray[1][0].ToObject<JObject>());
+
+            }
+            catch (Exception)
+            {
+                _gpu = new GPU();
+            }
             _ram = new Ram(jsonArray[2].ToObject<JObject>());
             _disk = new PhysicalDisk(jsonArray[3][0].ToObject<JObject>());
 
@@ -49,9 +59,17 @@ namespace RemoteMonitor
         {
             refreshControl.IsRefreshing = false;
             _cpu.update(jsonArray[0].ToObject<JObject>());
-            _gpu.update(jsonArray[1][0].ToObject<JObject>());
+            try
+            {
+                _gpu.update(jsonArray[1][0].ToObject<JObject>());
+                _disk.update(jsonArray[3][0].ToObject<JObject>());
+
+            }
+            catch (Exception)
+            {
+
+            }
             _ram.update(jsonArray[2].ToObject<JObject>());
-            _disk.update(jsonArray[3][0].ToObject<JObject>());
          
 
             lastUpdated.Text = "Last Updated " + DateTime.Now.ToLocalTime().ToString();

@@ -14,6 +14,13 @@ namespace RemoteMonitor.Components
             componentType = "GPU";
             update(temp, componentUsage, vRam);
         }
+        public GPU() 
+        {
+            componentName = "No GPU detected";
+            temperature = 0;
+            usage = 0;
+            vramTotal = 0;
+        }
         public GPU(JObject json)
         {
             componentName = json["componentName"].ToString();
