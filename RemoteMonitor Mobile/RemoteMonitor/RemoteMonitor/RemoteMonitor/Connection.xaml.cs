@@ -16,6 +16,8 @@ namespace RemoteMonitor
         
         public MainPage(string text)
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
             try
             {

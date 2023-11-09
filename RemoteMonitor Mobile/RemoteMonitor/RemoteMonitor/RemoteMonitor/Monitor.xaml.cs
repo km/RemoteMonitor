@@ -21,7 +21,8 @@ namespace RemoteMonitor
         private Ram _ram;
         public Monitor(Client client, GPU gpu, PhysicalDisk disk, Ram ram)
         {
-            
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
             _client = client;
             _gpu = gpu;
@@ -61,7 +62,7 @@ namespace RemoteMonitor
         {
             //cpu
             if (_cpu.componentName != "")
-               cpuName.Text = _cpu.componentName;
+               cpuName.Text = _cpu.componentName.Trim();
             else
                 cpuName.Text = "CPU";
 
@@ -70,15 +71,24 @@ namespace RemoteMonitor
             else
                 cpuTemp.Text = "Temp: N/A";
             cpuUsage.Text = "Usage: "+ Math.Round(_cpu.usage * 100,2) + "%";
-            if (_cpu.fanSpeed[0] != 0)
-                cpuFanSpeed.Text = "Fan: " + _cpu.fanSpeed[0].ToString() + "RPM";
-
-            else
+            try
+            {
+                if (_cpu.fanSpeed[0] != 0)
+                    cpuFanSpeed.Text = "Fan: " + _cpu.fanSpeed[0].ToString() + "RPM";
+                else
+                    cpuFanSpeed.Text = "Fan: N/A";
+            }
+            catch (Exception)
+            {
                 cpuFanSpeed.Text = "Fan: N/A";
+            }
+           
+
+         
 
             //gpu
             if (_gpu.componentName != "")
-                gpuName.Text = _gpu.componentName;
+                gpuName.Text = _gpu.componentName.Trim(); 
             else
                 gpuName.Text = "GPU";
 
@@ -91,7 +101,7 @@ namespace RemoteMonitor
 
             //ram
             if (_ram.componentName != "" || _ram.componentName == null)
-                ramName.Text = _ram.componentName;
+                ramName.Text = _ram.componentName.Trim(); 
             else
                 ramName.Text = "RAM";
             ramUsage.Text = "Usage: " + Math.Round(_ram.getUsage() * 100,2) + "%";
@@ -100,7 +110,7 @@ namespace RemoteMonitor
 
             //disk
             if (_disk.componentName != "")
-                diskName.Text = _disk.componentName;
+                diskName.Text = _disk.componentName.Trim();
             else
                 diskName.Text = "Disk";
             if (_disk.temperature != 0)
