@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteMonitor.Android", "Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteMonitor.iOS", "RemoteMonitor\RemoteMonitor.iOS\RemoteMonitor.iOS.csproj", "{9E5BC518-CA73-448C-A03E-9DA76CAE1EC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteMonitor", "RemoteMonitor\RemoteMonitor\RemoteMonitor.csproj", "{987BEDF3-50AE-4EF4-B3D7-748BF3F8FC43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteMonitor", "RemoteMonitor\RemoteMonitor\RemoteMonitor.csproj", "{987BEDF3-50AE-4EF4-B3D7-748BF3F8FC43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

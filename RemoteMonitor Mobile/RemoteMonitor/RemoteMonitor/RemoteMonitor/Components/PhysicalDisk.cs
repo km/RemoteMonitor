@@ -10,6 +10,14 @@ namespace RemoteMonitor.Components
         public long capacity;
         public long availableCapacity;
 
+        public PhysicalDisk() 
+        {
+            componentName = "No Disk detected";
+            componentType = "Disk";
+            temperature = 0;
+            capacity = 0;
+            availableCapacity = 0;
+        }
         public PhysicalDisk(string name, double temp, long diskCapacity, long availableDiskCapacity)
         {
             componentName = name;

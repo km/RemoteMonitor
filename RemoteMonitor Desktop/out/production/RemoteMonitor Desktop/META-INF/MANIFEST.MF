@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: com.company.Main
+Class-Path: C:\Users\omar\Desktop\RemoteMonitor\RemoteMonitor Desktop\sr
+ c\main\java\com\company\Main.java
+

@@ -1,0 +1,35 @@
+bundleassemblies=false
+aotassemblies=false
+androidaddkeepalives=true
+androidaotmode=none
+androidembedprofilers=
+androidenableprofiledaot=false
+androiddextool=d8
+androidlinktool=
+androidlinkresources=false
+androidpackageformat=apk
+embedassembliesintoapk=true
+androidlinkmode=sdkonly
+androidlinkskip=
+androidsdkbuildtoolsversion=32.0.0
+androidsdkpath=d:\android\android-sdk\
+androidndkpath=
+javasdkpath=c:\program files\microsoft\jdk-11.0.16.101-hotspot\
+androidsequencepointsmode=normal
+xamarinandroidversion=13.2.1-2
+monosymbolarchive=true
+androiduselatestplatformsdk=false
+targetframeworkversion=v13.0
+androidcreatepackageperabi=
+androidgeneratejnimarshalmethods=false
+os=windows_nt
+androidincludedebugsymbols=false
+androidpackagenamingpolicy=lowercasecrc64
+_nugetassetstimestamp=638350899181472083
+typemapkind=mvid
+androidsupportedabis=arm64-v8a
+armeabi-v7a
+x86
+x86_64
+androidmanifestplaceholders=
+projectfullpath=c:\users\omar\desktop\remotemonitor\remotemonitor mobile\remotemonitor\remotemonitor\remotemonitor.android\remotemonitor.android.csproj

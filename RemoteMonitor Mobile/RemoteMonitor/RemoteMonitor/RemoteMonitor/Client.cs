@@ -60,8 +60,17 @@ namespace RemoteMonitor
                 if (!(socket.Available > 0))
                     break;
             }
+            Debug.WriteLine(output);
+            try
+            {
+                return output.Substring(0, output.IndexOf('\r'));
+            }
+            catch (Exception)
+            {
 
-            return output.Substring(0, output.IndexOf('\r'));
+                return output.Trim();
+            }
+            
         }
 
         public async Task<string> RequestDataAsync()

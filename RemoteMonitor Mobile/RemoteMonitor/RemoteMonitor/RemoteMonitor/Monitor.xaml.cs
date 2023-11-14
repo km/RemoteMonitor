@@ -47,7 +47,16 @@ namespace RemoteMonitor
                 _gpu = new GPU();
             }
             _ram = new Ram(jsonArray[2].ToObject<JObject>());
-            _disk = new PhysicalDisk(jsonArray[3][0].ToObject<JObject>());
+            try
+            {
+                _disk = new PhysicalDisk(jsonArray[3][0].ToObject<JObject>());
+            }
+            catch (Exception)
+            {
+
+                _disk = new PhysicalDisk();
+            }
+            
 
             setFields();
         }
