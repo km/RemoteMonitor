@@ -59,7 +59,7 @@ If you encounter any issues while using Remote Monitor, please consider the foll
     
 2.  **Firewall Settings:** Ensure that your firewall is not blocking the application. Adjust your firewall settings if necessary.
     
-3.  **Network Limitations:** Currently, the application functions within LAN networks. To use it outside your local network, you can either set up port forwarding or employ a VPN service like [TailScale](https://tailscale.com/).
+3.  **Network Limitations:** Currently, the application functions within LAN networks. To use it outside your local network, you can either set up port forwarding or employ a VPN service like [TailScale](https://tailscale.com/). If you're using it on a VPS or similar usually opening the required port publicly through the firewall should be sufficient.
 
 4. **Variable Statistics:** Keep in mind that not all statistics may be available on every computer. For example, integrated GPUs may not report temperature information.
 
